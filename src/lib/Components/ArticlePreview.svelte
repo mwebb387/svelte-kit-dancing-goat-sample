@@ -1,29 +1,31 @@
 <script lang="ts">
   import type { ArticlePreview } from '$lib/interfaces';
-  import Card, { Content, Media, MediaContent } from '@smui/card';
+  import { Card, Clickable } from '@kahi-ui/framework';
 
   export let preview: ArticlePreview;
+
+  $: href = `/articles/${preview.slug}`;
 </script>
 
-<Card>
-    <Content>
-      <h2 class="mdc-typography--subtitle2">{preview.title}</h2>
-    </Content>
-    <Media class="card-media-16x9" aspectRatio="16x9">
-      <MediaContent>
+<Clickable.Container>
+  <Card.Container>
+
+    <Card.Figure height="100" fit="cover">
         <img src="{preview.teaserImage.url}" alt={preview.teaserImage.name} />
-      </MediaContent>
-    </Media>
-</Card>
+    </Card.Figure>
+
+    <Card.Header>
+      <Clickable.Anchor href={href}>
+        {preview.title}
+      </Clickable.Anchor>
+    </Card.Header>
+
+  </Card.Container>
+</Clickable.Container>
 
 <style>
-  h2 {
-    font-size: 18px;
-  }
-
   img {
     height: 100%;
-    object-fit: cover;
-    width: 100%;
+    width: auto;
   }
 </style>

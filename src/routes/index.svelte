@@ -1,10 +1,8 @@
 <script lang="ts">
-  import LayoutGrid, { Cell } from '@smui/layout-grid';
-
-  import ArticlePreview from '$lib/Components/ArticlePreview.svelte';
+  import { Container, Stack } from '@kahi-ui/framework';
   import Hero from '$lib/Components/Hero.svelte';
-
-  import { ArticlePreview as IArticlePreview, Homepage } from '$lib/interfaces';
+  import { Homepage } from '$lib/interfaces';
+  import ArticleList from '$lib/Components/ArticleList.svelte';
 
   export let homepage: Homepage;
 </script>
@@ -13,31 +11,18 @@
 	<title>Home</title>
 </svelte:head>
 
-<Hero
-  title={homepage.heroUnit.title}
-  subtitle={homepage.heroUnit.marketingMessage}
-  imageSrc={homepage.heroUnit.image.url}>
-</Hero>
+<Stack.Container spacing="medium">
+  <Hero
+    title={homepage.heroUnit.title}
+    subtitle={homepage.heroUnit.marketingMessage}
+    imageSrc={homepage.heroUnit.image.url}>
+  </Hero>
 
-<h2>Recent Articles</h2>
+  <Container>
+    <h2>Recent Articles</h2>
+  </Container>
 
-<LayoutGrid>
-  {#each homepage.articles as article}
-    <Cell>
-      <ArticlePreview  preview={article} />
-    </Cell>
-  {/each}
-</LayoutGrid>
-
-<style>
-  h2 {
-    margin-left: var(--mdc-layout-grid-margin-phone, 16px);
-    text-decoration: underline;
-  }
-
-  @media (min-width: 840px) {
-    h2 {
-      padding: var(--mdc-layout-grid-margin-desktop, 24px);
-    }
-  }
-</style>
+  <Container>
+    <ArticleList articles={homepage.articles}></ArticleList>
+  </Container>
+</Stack.Container>

@@ -1,6 +1,9 @@
 <script lang="ts">
-	import Header from '$lib/Components/Header.svelte';
+	import '@kahi-ui/framework/dist/kahi-ui.framework.min.css';
+	import '@kahi-ui/framework/dist/kahi-ui.theme.default.min.css';
 	import '../app.css';
+
+	import Header from '$lib/Components/Header.svelte';
 </script>
 
 <Header />
