@@ -1,4 +1,3 @@
-import { homepageMapper } from './../mapping/mappers';
 import { singleton, inject } from 'tsyringe';
 import { DeliveryClient, IDeliveryClient } from '@kentico/kontent-delivery';
 
@@ -6,7 +5,11 @@ import { ICmsService } from '$lib/interfaces';
 import { projectModel } from '$lib/models/_project';
 import { Article } from '$lib/models/article';
 import { Home } from '$lib/models/home';
-import { articlePreviewMapper } from '$lib/mapping/mappers';
+import {
+  articleMapper,
+  articlePreviewMapper,
+  homepageMapper,
+} from '$lib/mapping/mappers';
 
 @singleton()
 export class CmsService implements ICmsService {
@@ -32,6 +35,18 @@ export class CmsService implements ICmsService {
       .toPromise();
 
     return articlePreviewMapper(articles.data.items);
+  }
+
+  async getArticle(slug: string) {
+    const articleType = projectModel.contentTypes.article;
+
+    const articles = await this.client
+      .items<Article>()
+      .type(articleType.codename)
+      .equalsFilter('elements.url_pattern', slug)
+      .toPromise();
+
+    return articleMapper(articles.data.items[0]);
   }
 
   async getHomepage() {

@@ -6,6 +6,10 @@
   export let articles: IArticlePreview[];
 </script>
 
+<svelte:head>
+	<title>Articles</title>
+</svelte:head>
+
 <Container>
   <Stack.Container spacing="medium">
     <h1>All Articles</h1>

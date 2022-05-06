@@ -1,7 +1,7 @@
 
 import { ElementModels } from "@kentico/kontent-delivery";
 import { morphism, Schema } from "morphism";
-import { ArticlePreview, Hero, Homepage, Image } from "$lib/interfaces";
+import { ArticleDetail, ArticlePreview, Hero, Homepage, Image } from "$lib/interfaces";
 
 import { Article } from "../models/article";
 import { HeroUnit } from '../models/hero_unit';
@@ -23,6 +23,16 @@ export const articlePreviewSchema: Schema<ArticlePreview, Article> = {
   summary: 'elements.summary.value',
   teaserImage: (article: Article) => morphism(imageSchema, article.elements.teaserImage?.value?.[0]),
   slug: 'elements.urlPattern.value',
+}
+
+export const articleSchema: Schema<ArticleDetail, Article> = {
+  title: 'elements.title.value',
+  postDate: 'elements.postDate.value',
+  summary: 'elements.summary.value',
+  teaserImage: (article: Article) => morphism(imageSchema, article.elements.teaserImage?.value?.[0]),
+  slug: 'elements.urlPattern.value',
+  bodyCopy: 'elements.bodyCopy.value',
+  // metadata: Metadata
 }
 
 export const heroSchema: Schema<Hero, HeroUnit> = {
