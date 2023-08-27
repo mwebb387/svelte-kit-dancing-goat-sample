@@ -1,3 +1,9 @@
+# Overview
+
+This is a sample project utilizing SvelteKit with [Kontent](https://kontent.ai/) as a headless CMS.
+
+NOTE: this sample has no been updated since SvelteKit made the major routing changes prior to version 1.0. I might upgrade this sample eventually, but due to general time constraints do not have plans to do so in the near future.
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
